@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Sign In</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+        type="text" placeholder="username" formControlName="username" />
+      <div class="error-message" *ngIf="submitted && f.username.errors">
+        <div *ngIf="f.username.errors.required">
+          Username is required
+        </div>
+      </div>
+      <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        placeholder="password" type="password" formControlName="password"/>
+      <div class="error-message" *ngIf="submitted && f.password.errors">
+        <div *ngIf="f.password.errors.required">
+          Password is required
+        </div>
+      </div>
+      <label>
+        <input type="checkbox" formControlName="rememberMe"/>Remember me
+      </label>
+      <button type="submit">Sign In</button>
+    </form>
+    <a routerLink="/register">Don't have an account? Sign up there</a>
+  </div>
+</div>

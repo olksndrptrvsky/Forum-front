@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.main-container {
+ width: 90%;
+ margin: 5%;
+ background-color: #c9f5ff;
+}
+
+.container {
+  padding: 0 50px;
+}
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+:root {
+  --main-color: #0e0c77;
+}
+

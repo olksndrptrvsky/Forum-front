@@ -1,0 +1,11 @@
+<div class="header-container">
+  <div class="container">
+    <img src="assets/images/logo.png" routerLink="/" alt="logo" class="logo">
+    <button *ngIf="!isLoggedIn(); else logoutBlock" class="login-button" routerLink="login">Login</button>
+    <ng-template #logoutBlock>
+      <button class="login-button" (click)="logout()">Logout</button>
+    </ng-template>
+    <div class="clearfix"></div>
+  </div>
+
+</div>

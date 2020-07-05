@@ -1,0 +1,11 @@
+.container {
+  background-color: var(--main-color);
+  color: white;
+}
+
+
+.footer-container {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+

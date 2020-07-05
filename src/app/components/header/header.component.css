@@ -1,0 +1,30 @@
+.header-container {
+  height: 50px;
+  background-color: var(--main-color);
+}
+
+.container {
+  height: 100%;
+}
+
+.logo {
+  height: 80%;
+  margin: 5px 0;
+  cursor: pointer;
+  outline: none;
+}
+
+button {
+  float: right;
+  background-color: var(--main-color);
+  border-style: none;
+  height: 100%;
+  width: 100px;
+  color: white;
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #0e0c99;
+}
