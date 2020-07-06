@@ -1,0 +1,40 @@
+.container {
+  margin: 60px 0;
+}
+
+.register-container {
+  margin: 30px auto;
+  text-align: center;
+}
+
+
+
+input[type="text"], input[type="password"], button {
+  display: block;
+  /*width: 200px;*/
+  margin: 25px auto 0;
+  font-size: 16px;
+}
+
+input {
+  margin: 25px auto 0;
+}
+
+
+.error-message {
+  margin-top: 10px;
+  color: red;
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+button {
+  color: white;
+  background-color: var(--main-color);
+  border-style: none;
+  padding: 5px 10px;
+  margin-bottom: 25px;
+}
+

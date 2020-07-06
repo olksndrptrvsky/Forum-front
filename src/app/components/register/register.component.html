@@ -1,1 +1,58 @@
-<p>register works!</p>
+<div class="container">
+  <div class="register-container">
+    <h2>Sign Up</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+
+      <input [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+             type="text" placeholder="username" formControlName="username" />
+      <div class="error-message" *ngIf="submitted && f.username.errors">
+        <div *ngIf="f.username.errors.required">
+          Username is required
+        </div>
+      </div>
+
+      <input [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+             type="text" placeholder="email" formControlName="email" />
+      <div class="error-message" *ngIf="submitted && f.email.errors">
+        <div *ngIf="f.email.errors.required">
+          Email is required
+        </div>
+        <div *ngIf="f.email.errors.email">
+          Email must be a valid email address
+        </div>
+      </div>
+
+
+
+      <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+             placeholder="password" type="password" formControlName="password"/>
+      <div class="error-message" *ngIf="submitted && f.password.errors">
+        <div *ngIf="f.password.errors.required">
+          Password is required
+        </div>
+      </div>
+
+      <input [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+             placeholder="confirm password" type="password" formControlName="confirmPassword"/>
+      <div class="error-message" *ngIf="submitted && f.confirmPassword.errors">
+        <div *ngIf="f.confirmPassword.errors.required">
+          Confirm password is required
+        </div>
+        <div *ngIf="f.confirmPassword.errors.mustMatch">
+          Passwords are not match
+        </div>
+      </div>
+      <div class="error-message" *ngIf="submitted && registerForm.valid && result">
+        <div *ngIf="!result.succeeded">
+          <div *ngFor="let err of result?.errors">
+            {{err.description}}
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>
+

@@ -17,6 +17,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthInterceptor} from './_interceptors/auth.interceptor';
+import {ErrorLoggerInterceptor} from './_interceptors/error-logger.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import {AuthInterceptor} from './_interceptors/auth.interceptor';
     ReactiveFormsModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorLoggerInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })
