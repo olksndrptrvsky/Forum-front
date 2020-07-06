@@ -12,11 +12,12 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/themes', pathMatch: 'full' },
+  { path: '', redirectTo: '/themes/latest/1', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'theme/:id', component: ThemeComponent },
-  { path: 'themes', component: ThemeListComponent },
+  { path: 'themes/:filter', redirectTo: '/themes/:filter/1', pathMatch: 'full' },
+  { path: 'themes/:filter/:page', component: ThemeListComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: Role.Admin } },
   { path: 'moder', component: ModerComponent, canActivate: [AuthGuard], data: { roles: Role.User } },
   { path: '404', component: NotFoundComponent },

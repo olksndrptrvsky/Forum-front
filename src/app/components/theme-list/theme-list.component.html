@@ -1,1 +1,21 @@
-<p>theme-list works!</p>
+<div class="container">
+  <div class="filter-buttons">
+    <button type="button" class="filter-button" [ngClass]="{'chosen-filter': isChosenFilter('latest')}"
+            (click)="loadThemes('themes/latest/1')">
+      Latest
+    </button>
+    <button type="button" class="filter-button" [ngClass]="{'chosen-filter': isChosenFilter('popular')}"
+            (click)="loadThemes('themes/popular/1')">
+      Popular
+    </button>
+  </div>
+  <div class="theme-list" *ngIf="!loadingThemes else loadingBlock">
+    <div class="theme" *ngFor="let theme of themes">
+      {{theme.title}}
+    </div>
+  </div>
+  <ng-template #loadingBlock >
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+  </ng-template>
+</div>
