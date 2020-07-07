@@ -11,11 +11,28 @@
   </div>
   <div class="theme-list" *ngIf="!loadingThemes else loadingBlock">
     <div class="theme" *ngFor="let theme of themes">
-      {{theme.title}}
+      <div class="theme-info">
+       <ul>
+         <li>Author: {{theme.authorUsername}}</li>
+         <li>Messages: {{theme.messageCount}}</li>
+         <li>Created: {{theme.dateTime | date :'medium'}}</li>
+       </ul>
+      </div>
+      <div class="theme-body">
+        <h3 class="theme-title" routerLink="/theme/{{theme.id}}">{{theme.title}}</h3>
+        <div class="theme-hashtags">
+          <div class="theme-hashtag" *ngFor="let hashtag of theme.hashtags">
+            {{hashtag}}
+          </div>
+        </div>
+        <div class="text">
+          {{theme.text}}
+        </div>
+      </div>
+      <div class="clearfix"></div>
     </div>
   </div>
   <ng-template #loadingBlock >
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-
   </ng-template>
 </div>
