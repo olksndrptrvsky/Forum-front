@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Theme} from '../../_models/Theme';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ThemeService} from '../../_services/theme.service';
 
 @Component({
@@ -12,33 +12,58 @@ export class ThemeListComponent implements OnInit {
   themes: Theme[];
   loadingThemes: boolean = false;
 
+
   constructor(
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    console.log("CONST")
+    this.router.events.subscribe((val) => {
+
+      if (val instanceof NavigationEnd)
+      {
+        console.log("BEFORE")
+        this.loadThemes();
+        console.log("AFTER")
+
+      }
+    })
+  }
 
 
   ngOnInit(): void {
-    this.loadThemes(this.router.url);
+
   }
 
   isChosenFilter(filter: string): boolean {
     return this.activatedRoute.snapshot.params.filter === filter;
   }
 
-  loadThemes(newRoute: string): void {
+  loadThemes(): void {
     this.loadingThemes = true;
-    this.router.navigate([`${newRoute}`]).then(() => {
-      let filter: string = this.activatedRoute.snapshot.params.filter;
-      let page: string = this.activatedRoute.snapshot.params.page;
 
-      this.themeService.getThemes(filter, page).subscribe( themes =>
-      {
-        this.themes = themes;
-        this.loadingThemes = false;
-      });
-    });
+    let filter: string = this.activatedRoute.snapshot.params.filter;
+    let page: string = this.activatedRoute.snapshot.params.page;
+    this.themeService.getThemes(filter, page, this.search).subscribe( themes =>
+        {
+          this.themes = themes;
+          this.loadingThemes = false;
+        });
 
   }
+
+  searchByHashtag(hashtag: string): void {
+    this.router.navigate(
+      ['/themes/search/1'],
+      {
+        queryParams: { search: `[${hashtag}]` },
+      });
+  }
+
+
+  get search() {
+    return this.activatedRoute.snapshot.queryParams.search;
+  }
+
 }

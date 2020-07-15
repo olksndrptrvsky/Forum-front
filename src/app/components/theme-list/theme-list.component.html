@@ -1,11 +1,11 @@
 <div class="container">
   <div class="filter-buttons">
     <button type="button" class="filter-button" [ngClass]="{'chosen-filter': isChosenFilter('latest')}"
-            (click)="loadThemes('themes/latest/1')">
+      routerLink="/themes/latest/1">
       Latest
     </button>
     <button type="button" class="filter-button" [ngClass]="{'chosen-filter': isChosenFilter('popular')}"
-            (click)="loadThemes('themes/popular/1')">
+      routerLink="/themes/popular/1">
       Popular
     </button>
   </div>
@@ -21,7 +21,7 @@
       <div class="theme-body">
         <h3 class="theme-title" routerLink="/theme/{{theme.id}}">{{theme.title}}</h3>
         <div class="theme-hashtags">
-          <div class="theme-hashtag" *ngFor="let hashtag of theme.hashtags">
+          <div class="theme-hashtag" *ngFor="let hashtag of theme.hashtags" (click)="searchByHashtag(hashtag)">
             {{hashtag}}
           </div>
         </div>

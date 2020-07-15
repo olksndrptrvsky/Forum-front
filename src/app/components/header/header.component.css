@@ -12,6 +12,7 @@
   margin: 5px 0;
   cursor: pointer;
   outline: none;
+  float: left;
 }
 
 button {
@@ -24,7 +25,28 @@ button {
   outline: none;
 }
 
-button:hover {
+button:hover, .search-box>img:hover{
   cursor: pointer;
   background-color: #0e0c99;
+}
+
+.search-box {
+  float: left;
+  margin-left: 260px;
+}
+
+
+.search-box>img, .search-box input{
+  height: 20px;
+  display: block;
+  float: left;
+}
+
+.search-box img {
+  padding: 15px;
+  cursor: pointer;
+}
+
+.search-box input {
+  margin: 12px;
 }

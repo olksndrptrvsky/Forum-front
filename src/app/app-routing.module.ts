@@ -9,12 +9,14 @@ import {AuthGuard} from './_guard/auth.guard';
 import {Role} from './_models/Role';
 import {ModerComponent} from './components/moder/moder.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
+import {CreateThemeComponent} from './components/create-theme/create-theme.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/themes/latest/1', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'createTheme', component: CreateThemeComponent },
   { path: 'theme/:id', component: ThemeComponent },
   { path: 'themes/:filter', redirectTo: '/themes/:filter/1', pathMatch: 'full' },
   { path: 'themes/:filter/:page', component: ThemeListComponent },
