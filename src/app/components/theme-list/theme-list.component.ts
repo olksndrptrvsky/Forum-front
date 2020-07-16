@@ -18,14 +18,11 @@ export class ThemeListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    console.log("CONST")
     this.router.events.subscribe((val) => {
 
       if (val instanceof NavigationEnd)
       {
-        console.log("BEFORE")
         this.loadThemes();
-        console.log("AFTER")
 
       }
     })

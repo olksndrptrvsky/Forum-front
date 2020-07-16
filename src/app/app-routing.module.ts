@@ -16,12 +16,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/themes/latest/1', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'createTheme', component: CreateThemeComponent },
+  { path: 'createTheme', component: CreateThemeComponent, canActivate: [AuthGuard], data: { roles: Role.User } },
   { path: 'theme/:id', component: ThemeComponent },
   { path: 'themes/:filter', redirectTo: '/themes/:filter/1', pathMatch: 'full' },
   { path: 'themes/:filter/:page', component: ThemeListComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: Role.Admin } },
-  { path: 'moder', component: ModerComponent, canActivate: [AuthGuard], data: { roles: Role.User } },
+  { path: 'moder', component: ModerComponent, canActivate: [AuthGuard], data: { roles: Role.Moder } },
   { path: '404', component: NotFoundComponent },
 ];
 

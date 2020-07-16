@@ -1,1 +1,55 @@
-<p>create-theme works!</p>
+<div class="container">
+  <div class="form-container">
+    <form [formGroup]="createThemeForm" (ngSubmit)="onSubmit()">
+      <div class="field-block">
+        <label>
+          Title
+          <input [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+                 type="text" placeholder="Title" formControlName="title" />
+        </label>
+        <div class="error-message" *ngIf="submitted && f.title.errors">
+          <div *ngIf="f.title.errors.required">
+            Title is required
+          </div>
+          <div *ngIf="f.title.errors.maxlength">
+            Title must have less than 200 chars
+          </div>
+        </div>
+      </div>
+
+      <div class="field-block">
+        <label>
+          Text
+          <textarea [ngClass]="{ 'is-invalid': submitted && f.text.errors }"
+              placeholder="Text" formControlName="text"></textarea>
+        </label>
+        <div class="error-message" *ngIf="submitted && f.text.errors">
+          <div *ngIf="f.text.errors.required">
+            Text is required
+          </div>
+          <div *ngIf="f.text.errors.maxLength">
+            Text must have less than 3000 chars
+          </div>
+        </div>
+      </div>
+
+      <div class="field-block">
+        <label>
+        <input>
+          Tags
+          <input [ngClass]="{ 'is-invalid': submitted && f.tags.errors }"
+                 type="text" placeholder="Tags" formControlName="tags"/>
+        </label>
+        <div class="error-message" *ngIf="submitted && f.tags.errors">
+          <div *ngIf="f.tags.errors.required">
+            Please enter at least one tag
+          </div>
+          <div *ngIf="f.tags.errors.tagsCount">
+            There are 5 tags maximum
+          </div>
+        </div>
+      </div>
+      <button type="submit">Create theme</button>
+    </form>
+  </div>
+</div>

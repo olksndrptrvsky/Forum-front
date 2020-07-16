@@ -12,24 +12,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string, rememberMe: boolean): void {
+  login(username: string, password: string): Observable<User> {
     let userCred: any = {};
     userCred.username = username;
     userCred.password = password;
     this.logout();
-    this.http.post<User>(this.userUrl + '/login', JSON.stringify(userCred) )
-      .subscribe(user =>
-    {
-      if (user!= null)
-      {
-        if (rememberMe) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-        else {
-          sessionStorage.setItem('currentUser', JSON.stringify(user));
-        }
-      }
-    });
+    return this.http.post<User>(this.userUrl + '/login', JSON.stringify(userCred));
   }
 
 

@@ -18,3 +18,24 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     }
   }
 }
+
+
+export function TagsCount(maxCount: number) {
+  return (formGroup: FormGroup) => {
+    const tags = formGroup.controls['tags'];
+    if (tags.errors)
+    {
+      // return if another validator has already found an error on the matchingControl
+      return;
+    }
+
+    if (tags.value.split(' ').length > 5)
+    {
+      tags.setErrors({ tagsCount: true });
+    }
+    else
+    {
+      tags.setErrors(null);
+    }
+  }
+}

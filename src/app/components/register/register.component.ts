@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit {
     this.userService.register(user).subscribe(result =>
     {
       this.result = result;
-      console.log('JSON RESULT ' + JSON.stringify(result));
       if (this.result.succeeded)
       {
         alert('Thanks for the registration!');

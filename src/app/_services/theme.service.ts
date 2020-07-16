@@ -17,4 +17,9 @@ export class ThemeService {
   getThemes(filter: string, page: string, search: string): Observable<Theme[]> {
     return this.http.get<Theme[]>(`${this.themeUrl}/${filter}/${page}`, { params: { search: search }});
   }
+
+  createTheme(theme: any): Observable<Theme> {
+    return this.http.post<Theme>(this.themeUrl, theme);
+  }
+
 }

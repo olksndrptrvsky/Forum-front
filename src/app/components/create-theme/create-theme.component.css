@@ -1,0 +1,57 @@
+.container {
+  margin: 60px 0;
+}
+
+.form-container {
+  margin: 30px auto;
+  /*text-align: center;*/
+}
+
+
+
+input, button, textarea {
+  display: block;
+  width: 99%;
+  font-size: 16px;
+  margin: 10px 0 20px;
+
+}
+
+button {
+  width: 120px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.field-block {
+  margin: 10px 0 20px;
+}
+
+input, textarea {
+  margin-bottom: 0;
+}
+
+textarea {
+  height: 350px;
+}
+
+
+.error-message {
+  margin-top: 10px;
+  color: red;
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+button {
+  color: white;
+  background-color: var(--main-color);
+  border-style: none;
+  padding: 5px 10px;
+  margin-bottom: 25px;
+}
+

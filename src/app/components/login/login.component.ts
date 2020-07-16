@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../_services/auth.service';
-import {timer} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -19,6 +18,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
 
     if (this.authService.getCurrentUser() != null) {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl ?? '/';
   }
 
 
@@ -51,9 +51,21 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.f.username.value , this.f.password.value, this.f.rememberMe.value);
+    this.authService.login(this.f.username.value , this.f.password.value)
+      .subscribe(user =>
+    {
+      if (user!= null)
+      {
+        if (this.f.rememberMe.value) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        else {
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      }
+      this.router.navigate([this.returnUrl]);
+    });
 
 
-    this.router.navigate([this.returnUrl]);
   }
 }
