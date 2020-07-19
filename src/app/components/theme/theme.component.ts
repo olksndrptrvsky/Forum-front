@@ -17,6 +17,7 @@ export class ThemeComponent implements OnInit {
   replies: Message[] = [];
   repliesPage: number;
   createMessage: Message = null;
+  changeTheme: SpecificTheme = null;
 
   loadingTheme: boolean = false;
   loadingMessages: boolean = false;
@@ -171,7 +172,13 @@ export class ThemeComponent implements OnInit {
   }
 
   editTheme(): void {
+    this.changeTheme = { ...this.theme, author: { ...this.theme.author} }
+  }
 
+  postTheme(theme: SpecificTheme): void {
+    this.changeTheme = null;
+    this.showThemeActions = false;
+    this.loadContent();
   }
 
 

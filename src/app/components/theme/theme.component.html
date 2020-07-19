@@ -1,6 +1,6 @@
 <div class="container">
   <div class="content-block" *ngIf="!loading else loadingBlock">
-    <div class="theme">
+    <div class="theme" *ngIf="changeTheme == null">
       <div class="author-info">
         <ul><b>Author:</b>
           <li>Username: {{theme.author.username}}</li>
@@ -47,6 +47,10 @@
       <div class="clearfix"></div>
     </div>
 
+
+    <app-create-theme [createTheme]="changeTheme" (onPost)="postTheme($event)" *ngIf="changeTheme">
+
+    </app-create-theme>
 
     <app-create-message [createMessage]="createMessage" (onPost)="postMessage($event)"
       *ngIf="createMessage && createMessage.replyMessageId == null"></app-create-message>

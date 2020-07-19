@@ -4,7 +4,7 @@
       <div class="field-block">
         <label>
           Title
-          <input [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+          <input [ngClass]="{ 'is-invalid': submitted && f.title.errors }" [ngModel]="createTheme.title"
                  type="text" placeholder="Title" formControlName="title" />
         </label>
         <div class="error-message" *ngIf="submitted && f.title.errors">
@@ -20,7 +20,7 @@
       <div class="field-block">
         <label>
           Text
-          <textarea [ngClass]="{ 'is-invalid': submitted && f.text.errors }"
+          <textarea [ngClass]="{ 'is-invalid': submitted && f.text.errors }" [ngModel]="createTheme.text"
               placeholder="Text" formControlName="text"></textarea>
         </label>
         <div class="error-message" *ngIf="submitted && f.text.errors">
@@ -36,7 +36,7 @@
       <div class="field-block">
         <label>
           Tags
-          <input [ngClass]="{ 'is-invalid': submitted && f.tags.errors }"
+          <input [ngClass]="{ 'is-invalid': submitted && f.tags.errors }" [ngModel]="createTheme.hashtags.join(' ')"
                  type="text" placeholder="Tags" formControlName="tags"/>
         </label>
         <div class="error-message" *ngIf="submitted && f.tags.errors">

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {TagsCount} from '../../_validators/validators';
 import {UserToRegister} from '../../_models/UserToRegister';
 import {Theme} from '../../_models/Theme';
+import {SpecificTheme} from '../../_models/SpecificTheme';
 
 @Component({
   selector: 'app-create-theme',
@@ -16,8 +17,8 @@ export class CreateThemeComponent implements OnInit {
   submitted: boolean = false;
 
 
-  @Input() createTheme: Theme = new Theme();
-  @Output() onPost = new EventEmitter<Theme>();
+  @Input() createTheme: SpecificTheme = new SpecificTheme();
+  @Output() onPost = new EventEmitter<SpecificTheme>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,6 +58,7 @@ export class CreateThemeComponent implements OnInit {
     if (this.createTheme.id)
     {
       this.themeService.updateTheme(this.createTheme).subscribe( updatedTheme => {
+        this.onPost.emit(this.createTheme);
         this.router.navigate([`theme/${updatedTheme.id}/1`]);
       })
     }

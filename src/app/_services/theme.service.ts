@@ -32,8 +32,8 @@ export class ThemeService {
     return this.http.delete(`${this.themeUrl}/${id}`);
   }
 
-  updateTheme(theme: Theme): Observable<Theme> {
-    return this.http.put<Theme>(`${this.themeUrl}/${theme.id}`, theme);
+  updateTheme(theme: SpecificTheme): Observable<SpecificTheme> {
+    return this.http.put<SpecificTheme>(`${this.themeUrl}/${theme.id}`, theme);
   }
 
 }
