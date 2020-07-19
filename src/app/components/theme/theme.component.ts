@@ -23,6 +23,8 @@ export class ThemeComponent implements OnInit {
   loadingMessages: boolean = false;
   idShowActions: number = null;
   showThemeActions: boolean = false;
+  currentPage: number;
+  pagesCount: number;
 
   constructor(
     private themeService: ThemeService,
@@ -30,11 +32,13 @@ export class ThemeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     public authService: AuthService) {
+
+      this.currentPage = this.activatedRoute.snapshot.params.page;
       this.repliesPage = 0;
       this.router.events.subscribe((val) => {
         if (val instanceof NavigationEnd) {
           this.loadContent();
-       }
+        }
       })
   }
 
@@ -54,8 +58,12 @@ export class ThemeComponent implements OnInit {
     const themeId = this.activatedRoute.snapshot.params.id;
     this.themeService.getTheme(themeId).subscribe(theme => {
         this.theme = theme;
-        this.loadingTheme = false;
-      });
+        this.messageService.getPagesCountForTheme(this.theme.id).subscribe(pagesCount => {
+          this.pagesCount = pagesCount;
+          this.loadingTheme = false;
+        });
+
+    });
 
     this.messageService.getMessagesInTheme(themeId, page).subscribe( messages => {
       this.messages = messages;
@@ -187,6 +195,34 @@ export class ThemeComponent implements OnInit {
       this.router.navigate(['/']);
     })
   }
+
+
+  private changePage(): void {
+    this.router.navigate([`/theme/${this.theme.id}/${this.currentPage}`]);
+  }
+
+  toFirstPage(): void {
+    this.currentPage = 1;
+    this.changePage();
+  }
+
+  toNextPage(): void {
+    this.currentPage++;
+    this.changePage();
+  }
+
+  toPreviousPage(): void {
+    this.currentPage--;
+    this.changePage();
+  }
+
+  toLastPage(): void {
+    this.currentPage = this.pagesCount;
+    this.changePage();
+  }
+
+
+
 
 }
 

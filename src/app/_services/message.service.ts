@@ -34,6 +34,11 @@ export class MessageService {
   updateMessage(message: Message): Observable<any> {
     return this.http.put<Message>(`${this.messageUrl}/${message.id}`, message);
   }
+
+
+  getPagesCountForTheme(themeId: number): Observable<number> {
+    return this.http.get<number>(`${this.messageUrl}/pageCount/${themeId}`);
+  }
 }
 
 
