@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'createTheme', component: CreateThemeComponent, canActivate: [AuthGuard], data: { roles: Role.User } },
-  { path: 'theme/:id', component: ThemeComponent },
+  { path: 'theme/:id/:page', component: ThemeComponent },
   { path: 'themes/:filter', redirectTo: '/themes/:filter/1', pathMatch: 'full' },
   { path: 'themes/:filter/:page', component: ThemeListComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: Role.Admin } },

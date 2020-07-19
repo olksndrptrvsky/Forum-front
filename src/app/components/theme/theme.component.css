@@ -1,0 +1,146 @@
+.container {
+  margin: 30px 0;
+}
+
+
+.lds-ring {
+  width: 100%;
+  text-align: center;
+  margin: 20px 48%;
+
+}
+
+
+.theme, .message {
+  position: relative;
+  background-color: white;
+  margin-top: 20px;
+  border: 2px solid #0e0c99;
+  padding: 20px;
+}
+
+
+
+
+.author-info {
+  float: left;
+  width: 25%;
+  height: 130px;
+}
+
+.author-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.author-info li {
+  margin-top: 1em;
+}
+
+.theme-title {
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  width: calc(100% - 30px);
+  float: left;
+}
+
+#theme-actions {
+  top: 40px;
+}
+
+
+.theme-body {
+  width: 75%;
+  float: left;
+}
+
+
+.theme-hashtag {
+  margin: 20px 20px 0 0;
+  float: left;
+  padding: 5px;
+  border-radius: 1em;
+  background-color: #c9f5ff;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.text {
+  margin-top: 20px;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+.message .text {
+  margin-top: 0;
+  overflow: hidden;
+}
+
+
+button {
+  color: white;
+  background-color: var(--main-color);
+  border-style: none;
+  padding: 10px;
+  cursor: pointer;
+  float: right;
+  border-radius: 2px;
+  margin: 20px 20px 20px 0;
+}
+
+.view-replies-button, .load-more-button {
+  float: left;
+}
+
+
+.reply {
+  border: 2px solid var(--main-color);
+  margin-top: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.reply-text {
+  width: calc(100% - 30px);
+  float: left;
+}
+
+.ellipsis {
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  float: right;
+}
+
+
+.el {
+  margin: 0 auto 2px;
+  width: 4px;
+  height: 4px;
+  background-color: var(--main-color);
+  border-radius: 2px;
+}
+
+.actions {
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  right: -30px;
+  top: 30px;
+  z-index: 3;
+}
+
+.action {
+  cursor: pointer;
+  padding: 0.5em;
+  background-color: lightgray;
+  border: 1px solid black;
+}
+
+.action:hover {
+  background-color: darkgray;
+
+}

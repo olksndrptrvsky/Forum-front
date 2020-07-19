@@ -31,8 +31,8 @@ button:hover, .search-box>img:hover{
 }
 
 .search-box {
-  float: left;
-  margin-left: 260px;
+  margin-left: 350px;
+  position: absolute;
 }
 
 

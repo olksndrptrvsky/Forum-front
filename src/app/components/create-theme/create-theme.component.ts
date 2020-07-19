@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ThemeService} from '../../_services/theme.service';
 import {Router} from '@angular/router';
@@ -14,6 +14,10 @@ import {Theme} from '../../_models/Theme';
 export class CreateThemeComponent implements OnInit {
   createThemeForm: FormGroup;
   submitted: boolean = false;
+
+
+  @Input() createTheme: Theme = new Theme();
+  @Output() onPost = new EventEmitter<Theme>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,16 +49,24 @@ export class CreateThemeComponent implements OnInit {
       return;
     }
 
-    let theme = {
-      title: this.f.title.value,
-      text: this.f.text.value,
-      hashtags: this.f.tags.value.split(' ')
+    this.createTheme.title = this.f.title.value;
+    this.createTheme.text = this.f.text.value;
+    this.createTheme.hashtags = this.f.tags.value.split(' ');
+
+
+    if (this.createTheme.id)
+    {
+      this.themeService.updateTheme(this.createTheme).subscribe( updatedTheme => {
+        this.router.navigate([`theme/${updatedTheme.id}/1`]);
+      })
+    }
+    else
+    {
+      this.themeService.createTheme(this.createTheme).subscribe( createdTheme => {
+        this.router.navigate([`theme/${createdTheme.id}/1`]);
+      })
     }
 
-
-    this.themeService.createTheme(theme).subscribe( createdTheme => {
-        this.router.navigate([`/theme/${createdTheme.id}`]);
-    })
   }
 
 }

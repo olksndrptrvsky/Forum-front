@@ -1,17 +1,18 @@
 <div class="header-container">
   <div class="container">
     <img src="assets/images/logo.png" routerLink="/" alt="logo" class="logo">
-    <div class="search-box">
-      <input type="text" placeholder="Search" #searchInput (keyup.enter)="search(searchInput.value)"
-      [value]="activatedRoute.snapshot.queryParams.search ? activatedRoute.snapshot.queryParams.search : null">
-      <img src="assets/images/search-icon.png" alt="search" (click)="search(searchInput.value)">
-    </div>
+
 
     <button *ngIf="!isLoggedIn(); else logoutBlock" class="login-button" routerLink="login">Login</button>
     <ng-template #logoutBlock>
       <button class="login-button" (click)="logout()">Logout</button>
     </ng-template>
     <button class="button" routerLink="/createTheme">Create theme</button>
+    <div class="search-box">
+      <input type="text" placeholder="Search" #searchInput (keyup.enter)="search(searchInput.value)"
+             [value]="activatedRoute.snapshot.queryParams.search ? activatedRoute.snapshot.queryParams.search : null">
+      <img src="assets/images/search-icon.png" alt="search" (click)="search(searchInput.value)">
+    </div>
     <div class="clearfix"></div>
 
   </div>

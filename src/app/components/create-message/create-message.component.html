@@ -1,1 +1,18 @@
-<p>create-message works!</p>
+<div class="form-container">
+  <form [formGroup]="createMessageForm">
+    <label>
+      <b>Input your text here</b>
+      <textarea formControlName="text" placeholder="Text" [(ngModel)]="createMessage.text">
+      </textarea>
+    </label>
+    <div class="error-message" *ngIf="submitted && createMessageForm.controls.text.errors">
+      <div *ngIf="createMessageForm.controls.text.errors.required">
+        Text is required
+      </div>
+      <div *ngIf="createMessageForm.controls.text.errors.maxlength">
+        Text must have less than 5000 chars
+      </div>
+    </div>
+    <button type="submit" (click)="postMessage()">Post message</button>
+  </form>
+</div>

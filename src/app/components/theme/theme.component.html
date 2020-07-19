@@ -1,1 +1,129 @@
-<p>theme works!</p>
+<div class="container">
+  <div class="content-block" *ngIf="!loading else loadingBlock">
+    <div class="theme">
+      <div class="author-info">
+        <ul><b>Author:</b>
+          <li>Username: {{theme.author.username}}</li>
+          <li>Messages: {{theme.author.messageCount}}</li>
+          <li>Posted: {{theme.dateTime | date :'medium'}}</li>
+        </ul>
+      </div>
+      <div class="theme-body">
+
+
+        <h2 class="theme-title" routerLink="/theme/{{theme.id}}/1">{{theme.title}}</h2>
+        <div class="ellipsis" (click)="showThemeActions = !showThemeActions">
+          <div class="el"></div>
+          <div class="el"></div>
+          <div class="el"></div>
+        </div>
+
+        <ul *ngIf="showThemeActions" class="actions" id="theme-actions">
+          <li class="action">Report</li>
+          <li class="action" *ngIf="userIsAuthor(theme.author.username)"
+              (click)="editTheme()">
+            Edit
+          </li>
+          <li class="action" *ngIf="userIsAuthor(theme.author.username)"
+              (click)="deleteTheme()">
+            Delete
+          </li>
+        </ul>
+
+
+        <div class="clearfix"></div>
+        <div class="theme-hashtags">
+          <div class="theme-hashtag" *ngFor="let hashtag of theme.hashtags" (click)="searchByHashtag(hashtag)">
+            {{hashtag}}
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="text">
+          {{theme.text}}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <button (click)="writeMessage()">Write your message</button>
+      <div class="clearfix"></div>
+    </div>
+
+
+    <app-create-message [createMessage]="createMessage" (onPost)="postMessage($event)"
+      *ngIf="createMessage && createMessage.replyMessageId == null"></app-create-message>
+
+
+    <div class="messages-block">
+      <div class="message" *ngFor="let message of messages">
+        <div class="author-info">
+          <ul><b>Author:</b>
+            <li>Username: {{message.author.username}}</li>
+            <li>Messages: {{message.author.messageCount}}</li>
+            <li>Posted: {{message.dateTime | date :'medium'}}</li>
+          </ul>
+        </div>
+        <div class="message-body">
+          <div class="text">
+            {{message.text}}
+          </div>
+          <div class="replies-button-box" *ngIf="message.hasReplies">
+            <button *ngIf="replies.length == 0 else hide" class="view-replies-button" (click)="loadReplies(message.id)">
+              View replies
+            </button>
+            <ng-template #hide>
+              <button *ngIf="message.hasReplies" class="view-replies-button" (click)="closeReplies()">
+                Hide replies
+              </button>
+            </ng-template>
+          </div>
+
+          <button (click)="replyMessage(message)">Reply</button>
+          <button (click)="reportMessage(message)">Report</button>
+          <div *ngIf="userIsAuthor(message.author.username)">
+            <button (click)="editMessage(message)">Edit</button>
+            <button (click)="deleteMessage(message)">Delete</button>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <app-create-message [createMessage]="createMessage" (onPost)="postMessage($event)"
+          *ngIf="createMessage && createMessage.replyMessageId == message.id"></app-create-message>
+
+        <div class="replies" *ngIf="replies.length > 0 && replies[0].replyMessageId === message.id">
+          <div class="reply" *ngFor="let reply of replies">
+            <div class="reply-text">
+              <b>{{reply.author.username}}, {{reply.dateTime | date: "medium"}} :</b> {{reply.text}}
+            </div>
+
+            <div class="ellipsis" (click)="showActions(reply.id)">
+              <div class="el"></div>
+              <div class="el"></div>
+              <div class="el"></div>
+            </div>
+            <ul *ngIf="idShowActions === reply.id" class="actions">
+              <li class="action">Report</li>
+              <li class="action" *ngIf="userIsAuthor(reply.author.username)"
+                (click)="editMessage(reply)">
+                Edit
+              </li>
+              <li class="action" *ngIf="userIsAuthor(reply.author.username)"
+                (click)="deleteMessage(reply)">
+                Delete
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+
+          </div>
+          <div *ngIf="!isLastRepliesPage()">
+            <button (click)="loadReplies(message.id)" class="load-more-button">
+              Load more
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadingBlock >
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  </ng-template>
+</div>

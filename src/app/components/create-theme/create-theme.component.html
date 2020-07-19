@@ -27,15 +27,14 @@
           <div *ngIf="f.text.errors.required">
             Text is required
           </div>
-          <div *ngIf="f.text.errors.maxLength">
-            Text must have less than 3000 chars
+          <div *ngIf="f.text.errors.maxlength">
+            Text must have less than 3000 chars. You have {{f.text.value.length}}
           </div>
         </div>
       </div>
 
       <div class="field-block">
         <label>
-        <input>
           Tags
           <input [ngClass]="{ 'is-invalid': submitted && f.tags.errors }"
                  type="text" placeholder="Tags" formControlName="tags"/>

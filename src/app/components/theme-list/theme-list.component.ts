@@ -10,7 +10,7 @@ import {ThemeService} from '../../_services/theme.service';
 })
 export class ThemeListComponent implements OnInit {
   themes: Theme[];
-  loadingThemes: boolean = false;
+  loading: boolean = false;
 
 
   constructor(
@@ -38,14 +38,14 @@ export class ThemeListComponent implements OnInit {
   }
 
   loadThemes(): void {
-    this.loadingThemes = true;
+    this.loading = true;
 
     let filter: string = this.activatedRoute.snapshot.params.filter;
     let page: string = this.activatedRoute.snapshot.params.page;
     this.themeService.getThemes(filter, page, this.search).subscribe( themes =>
         {
           this.themes = themes;
-          this.loadingThemes = false;
+          this.loading = false;
         });
 
   }

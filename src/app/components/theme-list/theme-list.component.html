@@ -9,7 +9,7 @@
       Popular
     </button>
   </div>
-  <div class="theme-list" *ngIf="!loadingThemes else loadingBlock">
+  <div class="theme-list" *ngIf="!loading else loadingBlock">
     <div class="theme" *ngFor="let theme of themes">
       <div class="theme-info">
        <ul>
@@ -19,7 +19,7 @@
        </ul>
       </div>
       <div class="theme-body">
-        <h3 class="theme-title" routerLink="/theme/{{theme.id}}">{{theme.title}}</h3>
+        <h3 class="theme-title" routerLink="/theme/{{theme.id}}/1">{{theme.title}}</h3>
         <div class="theme-hashtags">
           <div class="theme-hashtag" *ngFor="let hashtag of theme.hashtags" (click)="searchByHashtag(hashtag)">
             {{hashtag}}
