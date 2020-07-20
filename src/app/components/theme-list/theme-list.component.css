@@ -90,3 +90,30 @@
   cursor: pointer;
 }
 
+
+
+.pages {
+  width: 250px;
+  margin: 30px auto;
+}
+
+.pages>div {
+  float:left;
+  padding: 10px;
+  border: 1px solid black;
+  margin-left: 20px;
+}
+
+.page-control {
+  background-color: white;
+  cursor: pointer;
+}
+
+.page-control:hover {
+  background-color: lightgray;
+}
+
+.page {
+  background-color: var(--main-color);
+  color: white;
+}

@@ -221,8 +221,5 @@ export class ThemeComponent implements OnInit {
     this.changePage();
   }
 
-
-
-
 }
 

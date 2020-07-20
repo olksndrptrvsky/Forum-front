@@ -13,12 +13,16 @@ export class ThemeListComponent implements OnInit {
   loading: boolean = false;
 
 
+  pageSize: number = 15;
+  currentPage: number = 1;
+
+
   constructor(
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.router.events.subscribe((val) => {
+      this.router.events.subscribe((val) => {
 
       if (val instanceof NavigationEnd)
       {
@@ -42,6 +46,8 @@ export class ThemeListComponent implements OnInit {
 
     let filter: string = this.activatedRoute.snapshot.params.filter;
     let page: string = this.activatedRoute.snapshot.params.page;
+
+    console.log(filter, page);
     this.themeService.getThemes(filter, page, this.search).subscribe( themes =>
         {
           this.themes = themes;
@@ -63,4 +69,31 @@ export class ThemeListComponent implements OnInit {
     return this.activatedRoute.snapshot.queryParams.search;
   }
 
+
+
+  private changePage(): void {
+    const filter = this.activatedRoute.snapshot.params.filter;
+    this.router.navigate([`/themes/${filter}/${this.currentPage}`],
+      { queryParams: this.activatedRoute.snapshot.queryParams } );
+  }
+
+  toFirstPage(): void {
+    this.currentPage = 1;
+    this.changePage();
+  }
+
+  toNextPage(): void {
+    this.currentPage++;
+    this.changePage();
+  }
+
+  toPreviousPage(): void {
+    this.currentPage--;
+    this.changePage();
+  }
+
+
+  isLastPage(): boolean {
+    return this.themes.length < this.pageSize;
+  }
 }

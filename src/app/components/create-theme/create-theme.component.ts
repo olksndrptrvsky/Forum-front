@@ -54,6 +54,7 @@ export class CreateThemeComponent implements OnInit {
     this.createTheme.text = this.f.text.value;
     this.createTheme.hashtags = this.f.tags.value.split(' ');
 
+    console.log("HERE");
 
     if (this.createTheme.id)
     {
@@ -65,6 +66,7 @@ export class CreateThemeComponent implements OnInit {
     else
     {
       this.themeService.createTheme(this.createTheme).subscribe( createdTheme => {
+        console.log("HERE");
         this.router.navigate([`theme/${createdTheme.id}/1`]);
       })
     }

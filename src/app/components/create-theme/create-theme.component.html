@@ -36,7 +36,7 @@
       <div class="field-block">
         <label>
           Tags
-          <input [ngClass]="{ 'is-invalid': submitted && f.tags.errors }" [ngModel]="createTheme.hashtags.join(' ')"
+          <input [ngClass]="{ 'is-invalid': submitted && f.tags.errors }" [ngModel]="createTheme?.hashtags?.join(' ')"
                  type="text" placeholder="Tags" formControlName="tags"/>
         </label>
         <div class="error-message" *ngIf="submitted && f.tags.errors">
