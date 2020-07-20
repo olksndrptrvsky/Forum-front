@@ -1,0 +1,22 @@
+<div class="appoint-container" *ngIf="allModers">
+  <div>
+    <h3 class="appoint-title">Available</h3>
+    <ul class="moders">
+      <li *ngFor="let moder of allModers" [ngClass]="{selectedModer: moder == selectedAll}"
+          (click)="selectedAll = moder; selectedAppointed = null">{{moder}}</li>
+    </ul>
+  </div>
+
+  <div id="appoint-controls" class="controls">
+    <div class="control" (click)="moveToAppointed(selectedAll)">></div>
+    <div class="control" (click)="removeFromAppointed(selectedAppointed)"><</div>
+  </div>
+  <div>
+    <h3 class="appoint-title">Appointed</h3>
+    <ul class="moders">
+      <li *ngFor="let moder of appointedModers" [ngClass]="{selectedModer: moder == selectedAppointed}"
+          (click)="selectedAppointed = moder; selectedAll = null">{{moder}}</li>
+    </ul>
+  </div>
+</div>
+<div id="appoint-cta" class="control" (click)="appointModers()">Appoint Moders</div>

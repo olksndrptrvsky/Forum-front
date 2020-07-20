@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../_services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../../_services/user.service';
+import {ThemeService} from '../../_services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +11,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+
   constructor(private authService: AuthService,
               private router: Router,
-              public activatedRoute: ActivatedRoute
+              public activatedRoute: ActivatedRoute,
+              private themeService: ThemeService
               ) { }
 
   ngOnInit(): void {
+
   }
 
   isLoggedIn(): boolean {
@@ -32,6 +37,14 @@ export class HeaderComponent implements OnInit {
     {
       this.router.navigate(['/themes/search/1'], { queryParams: { search: searchString } });
     }
+  }
+
+  isAdmin(): boolean {
+    return this.authService.getCurrentUser()?.roles.includes('Administrator');
+  }
+
+  isModer(): boolean {
+    return this.authService.getCurrentUser()?.roles.includes('Moderator');
   }
 
 }

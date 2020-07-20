@@ -8,6 +8,12 @@
       <button class="login-button" (click)="logout()">Logout</button>
     </ng-template>
     <button class="button" routerLink="/createTheme">Create theme</button>
+    <button class="button" routerLink="/admin" *ngIf="isAdmin()">
+      Admin
+    </button>
+    <button class="button" routerLink="/moder" *ngIf="isModer()">
+      Moder
+    </button>
     <div class="search-box">
       <input type="text" placeholder="Search" #searchInput (keyup.enter)="search(searchInput.value)"
              [value]="activatedRoute.snapshot.queryParams.search ? activatedRoute.snapshot.queryParams.search : null">

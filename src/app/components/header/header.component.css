@@ -50,3 +50,12 @@ button:hover, .search-box>img:hover{
 .search-box input {
   margin: 12px;
 }
+
+
+.admin-alert {
+  font-size: 12px;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: orangered;
+  border-radius: 0.75em;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Theme} from '../../_models/Theme';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ThemeService} from '../../_services/theme.service';
+import {AuthService} from '../../_services/auth.service';
 
 @Component({
   selector: 'app-theme-list',
@@ -12,6 +13,7 @@ export class ThemeListComponent implements OnInit {
   themes: Theme[];
   loading: boolean = false;
 
+  appointModersThemeId: number = null;
 
   pageSize: number = 15;
   currentPage: number = 1;
@@ -20,7 +22,8 @@ export class ThemeListComponent implements OnInit {
   constructor(
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
       this.router.events.subscribe((val) => {
 
@@ -47,13 +50,11 @@ export class ThemeListComponent implements OnInit {
     let filter: string = this.activatedRoute.snapshot.params.filter;
     let page: string = this.activatedRoute.snapshot.params.page;
 
-    console.log(filter, page);
     this.themeService.getThemes(filter, page, this.search).subscribe( themes =>
         {
           this.themes = themes;
           this.loading = false;
         });
-
   }
 
   searchByHashtag(hashtag: string): void {
@@ -64,12 +65,9 @@ export class ThemeListComponent implements OnInit {
       });
   }
 
-
   get search() {
     return this.activatedRoute.snapshot.queryParams.search;
   }
-
-
 
   private changePage(): void {
     const filter = this.activatedRoute.snapshot.params.filter;
@@ -92,8 +90,15 @@ export class ThemeListComponent implements OnInit {
     this.changePage();
   }
 
-
   isLastPage(): boolean {
     return this.themes.length < this.pageSize;
+  }
+
+  isAdmin(): boolean {
+    return this.authService.getCurrentUser()?.roles.includes('Administrator');
+  }
+
+  appointModers(themeId: number): void {
+    this.appointModersThemeId = themeId;
   }
 }

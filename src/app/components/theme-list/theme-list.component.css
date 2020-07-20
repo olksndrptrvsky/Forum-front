@@ -7,8 +7,7 @@
   background-color: var(--main-color);
   border: none;
   color: white;
-  height: 2em;
-  width: 70px;
+  padding: 7px;
   outline: none;
   border-radius: 0.75em;
 
@@ -36,10 +35,10 @@
 
 .theme {
   background-color: white;
-  height: 180px;
   margin-top: 20px;
   border: 2px solid #0e0c99;
   padding: 20px;
+  position: relative;
 }
 
 
@@ -117,3 +116,19 @@
   background-color: var(--main-color);
   color: white;
 }
+
+.appoint-moders-button {
+  float: right;
+}
+
+.appoint-moders-button button {
+  color: white;
+  background-color: var(--main-color);
+  border-style: none;
+  padding: 10px;
+  cursor: pointer;
+  float: right;
+  border-radius: 2px;
+  margin: 20px 20px 20px 0;
+}
+

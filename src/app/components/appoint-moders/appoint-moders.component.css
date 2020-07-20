@@ -1,0 +1,58 @@
+.appoint-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.moders {
+  height: 100px;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+
+}
+
+.moders>li {
+  padding: 7px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.moders>li:hover {
+  background-color: lightgray;
+}
+
+
+.selectedModer {
+  background-color: lightgray;
+}
+
+
+.control {
+  padding: 0.5em;
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#appoint-controls {
+  margin-top: 12px;
+}
+
+.moders::-webkit-scrollbar {
+  display: none;
+}
+
+#appoint-cta {
+  display: flex;
+  width: 120px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.appoint-title {
+  margin: 0;
+}

@@ -8,6 +8,10 @@
       routerLink="/themes/popular/1">
       Popular
     </button>
+    <button type="button" class="filter-button" [ngClass]="{'chosen-filter': isChosenFilter('unmoderated')}"
+            routerLink="/themes/unmoderated/1" *ngIf="isAdmin()">
+      Unmoderated
+    </button>
   </div>
   <div class="theme-list" *ngIf="!loading else loadingBlock">
     <div class="theme" *ngFor="let theme of themes">
@@ -29,6 +33,19 @@
           {{theme.text}}
         </div>
       </div>
+      <div class="clearfix"></div>
+      <div class="appoint-moders-button" *ngIf="isAdmin() && isChosenFilter('unmoderated')">
+        <div *ngIf="appointModersThemeId == null">
+          <button (click)="appointModers(theme.id)">Appoint moders</button>
+        </div>
+        <div *ngIf="appointModersThemeId == theme.id">
+          <button (click)="appointModersThemeId = null">Close</button>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+
+      <app-appoint-moders *ngIf="appointModersThemeId == theme.id" [themeId]="appointModersThemeId"
+                          (onAppoint)="appointModersThemeId = null; loadThemes()"></app-appoint-moders>
       <div class="clearfix"></div>
     </div>
 

@@ -1,1 +1,29 @@
-<p>admin works!</p>
+<div class="container">
+  <p>Adding user to Moders</p>
+  <form [formGroup]="usernameForm" (ngSubmit)="addUserToModers()">
+    <label>
+      Username:
+      <input [ngClass]="{ 'is-invalid': submitted && usernameForm.controls.username.errors }"
+        type="text" formControlName="username" placeholder="username">
+    </label>
+    <div class="error-message" *ngIf="submitted && usernameForm.controls.username.errors">
+      <div *ngIf="usernameForm.controls.username.errors.required">
+        Username is required
+      </div>
+    </div>
+
+    <div *ngIf="submitted && usernameForm.valid">
+      <div class="error-message" *ngIf="result else ok">
+        {{result.error.Message}}
+      </div>
+      <ng-template #ok>
+        <div class="success">
+          Success
+        </div>
+      </ng-template>
+    </div>
+
+    <button type="submit">Add</button>
+  </form>
+
+</div>
