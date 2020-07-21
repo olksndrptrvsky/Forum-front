@@ -39,6 +39,8 @@ export class MessageService {
   getPagesCountForTheme(themeId: number): Observable<number> {
     return this.http.get<number>(`${this.messageUrl}/pageCount/${themeId}`);
   }
+
+
 }
 
 

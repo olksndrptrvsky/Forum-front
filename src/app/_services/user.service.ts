@@ -22,4 +22,15 @@ export class UserService {
     );
   }
 
+  addUserToModers(username: string) : Observable<any> {
+    return this.http.post(`${this.userUrl}/addToModers`, JSON.stringify(username)).pipe(catchError(err => {
+      return of(err);
+    }));
+  }
+
+  getAllModers(): Observable<string[]> {
+
+    return this.http.get<string[]>(`${this.userUrl}/moders`);
+  }
+
 }

@@ -16,7 +16,6 @@ export class ThemeService {
   ) { }
 
   getThemes(filter: string, page: string, search: string): Observable<Theme[]> {
-    console.log(`${this.themeUrl}/${filter}/${page}`);
     return this.http.get<Theme[]>(`${this.themeUrl}/${filter}/${page}`, { params: { search: search }});
   }
 
@@ -36,6 +35,15 @@ export class ThemeService {
 
   updateTheme(theme: SpecificTheme): Observable<SpecificTheme> {
     return this.http.put<SpecificTheme>(`${this.themeUrl}/${theme.id}`, theme);
+  }
+
+  addModerToTheme(themeModer: any): Observable<any> {
+    return this.http.post(`${this.themeUrl}/moder`, themeModer);
+  }
+
+
+  createReport(report): Observable<any> {
+    return this.http.post("/api/report/theme", report);
   }
 
 }
